@@ -1,6 +1,12 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = { "html", "cssls" }
-vim.lsp.enable(servers)
+-- Servers are installed via nixpkgs / devenv shells, not Mason.
+-- read :h vim.lsp.config for changing options of lsp servers
 
--- read :h vim.lsp.config for changing options of lsp servers 
+vim.lsp.config("ty", {
+  settings = {
+    ty = { diagnosticMode = "workspace" },
+  },
+})
+
+vim.lsp.enable { "ty", "nil_ls", "bashls", "clangd" }
